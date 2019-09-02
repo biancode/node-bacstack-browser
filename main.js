@@ -9,14 +9,12 @@ let win;
 
 const createWindow = () => {
   win = new BrowserWindow({width: 1000, height: 600});
-
-  //win.loadURL('http://localhost:4200');
-
-  win.loadURL(url.format({
+  win.loadURL('http://localhost:4200');
+  /* win.loadURL(url.format({
     pathname: path.join(__dirname, 'dist' , 'index.html'),
     protocol: 'file:',
     slashes: true
-  }));
+  })); */
 
   win.on('closed', () => {
     win = null;

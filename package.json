@@ -6,9 +6,11 @@
   "scripts": {
     "changelog": "commitlint --from=master",
     "ng": "ng",
-    "start": "electron . | ng serve",
+    "start": "ng build --prod && electron .",
+    "dev": "concurrently \"ng serve\" \"electron ./main.dev.js\" \"npm test\"",
     "build": "ng build --prod",
-    "test": "ng test",
+    "test": "ng test --cc",
+    "test-travis": "ng test -c travis.karma.conf.js --cc",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "pack": "npm run build && electron-packager . --platform=darwin,win32,linux --arch=x64 --overwrite --out=bin"
@@ -28,7 +30,7 @@
     "email": "fabio@fh1.ch"
   },
   "engines": {
-    "node": ">= 0.12.0"
+    "node": ">= 6.4.0"
   },
   "commitlint": {
     "extends": [
@@ -51,6 +53,7 @@
     "@angular/platform-browser": "^5.0.0",
     "@angular/platform-browser-dynamic": "^5.0.0",
     "@angular/router": "^5.0.0",
+    "ajv": "^6.0.0",
     "async": "^2.6.0",
     "@biancoroyal/bacstack": "https://github.com/biancode/node-bacstack",
     "body-parser": "^1.18.2",
@@ -74,6 +77,7 @@
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~6.0.60",
     "codelyzer": "^4.0.1",
+    "concurrently": "^3.5.1",
     "electron": "^1.7.10",
     "electron-packager": "^10.1.0",
     "jasmine-core": "~2.6.2",
@@ -82,6 +86,7 @@
     "karma-chrome-launcher": "~2.1.1",
     "karma-cli": "~1.0.1",
     "karma-coverage-istanbul-reporter": "^1.2.1",
+    "karma-electron": "^5.2.2",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "~5.1.2",

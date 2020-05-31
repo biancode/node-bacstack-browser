@@ -1,29 +1,31 @@
 language: "node_js"
-node_js:
-  - "9"
-  - "8"
-  - "6"
-
-  # fail buils early.
 matrix:
-  fast_finish: true
+  include:
+    - node_js: 14
+    - node_js: "lts/*"
+    - node_js: 10
   allow_failures:
-    - node_js: "9"
-
+    - node_js: 14
+    - node_js: 10
 before_install:
   - "npm install coveralls"
-
 before_script:
   # Generate a virtual framebuffer X server to collect Electron windows
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   # Wait for Xvfb to start
   - sleep 3
-
 script:
   - "commitlint-travis"
   - "npm run lint"
   - "npm run test-travis"
   - "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
-
 sudo: false
+cache:
+  directories:
+    - "node_modules"
+branches:
+  only:
+    - master
+    - next
+

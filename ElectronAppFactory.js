@@ -5,9 +5,7 @@ module.exports = function ElectronAppFactory(loadUrl) {
 
     const createWindow = () => {
       win = new BrowserWindow({width: 1000, height: 600});
-
       win.loadURL(loadUrl);
-
       win.on('closed', () => {
         win = null;
       });

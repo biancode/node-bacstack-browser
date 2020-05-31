@@ -6,7 +6,7 @@
   "scripts": {
     "changelog": "commitlint --from=master",
     "ng": "ng",
-    "start": "ng build --prod && electron .",
+    "start": "ng build --prod && concurrently \"ng serve\" \"electron ./main.js\"",
     "dev": "concurrently \"ng serve\" \"electron ./main.dev.js\" \"npm test\"",
     "build": "ng build --prod",
     "test": "ng test --cc",
@@ -55,7 +55,7 @@
     "@angular/router": "^5.0.0",
     "ajv": "^6.0.0",
     "async": "^2.6.0",
-    "@biancoroyal/bacstack": "https://github.com/biancode/node-bacstack",
+    "node-bacnet": "next",
     "body-parser": "^1.18.2",
     "core-js": "^2.4.1",
     "debug": "^3.1.0",

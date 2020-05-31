@@ -20,7 +20,7 @@ export class BrowseComponent implements OnInit {
     this.api.doDeviceSearch().subscribe(() => {
       setTimeout(() => {
         this.devices = this.api.getDevices();
-      }, 500);
+      }, 1000);
     });
   }
 }
